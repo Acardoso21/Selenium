@@ -1,0 +1,37 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import TimeoutException
+import time
+
+driver = webdriver.Chrome()
+wait = WebDriverWait(driver, timeout=2)
+waitlonger = WebDriverWait(driver, timeout=30)
+url = 'https://gfiber.speedtestcustom.com/'
+driver.get(url)
+try:
+    buttonload = wait.until(EC.presence_of_all_elements_located((By.ID, 'main-content')))
+    driver.find_element(By.XPATH, '//*[@id="main-content"]/div[1]/div/button').click()
+except TimeoutException:
+    print("Timed out waiting for website")
+
+try:
+    dataloaded = waitlonger.until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'results-container results-container-stage-finished')))
+    print('speed test done, collecting results')
+except TimeoutException:
+    print("Timed out waiting for elements to be located")
+
+try:
+    downloadspeed = driver.find_element((By.CLASS_NAME,'number monochrome-primary')).text
+except:
+    print('shitting the bed')
+
+for span in downloadspeed:
+    print(span.text)
+
+print("yay")
+
+driver.quit()

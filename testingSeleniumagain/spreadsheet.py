@@ -1,4 +1,7 @@
-import pandas
+import time
+import numpy as np
+import pandas as pd
+
 
 class Spreadsheet:
     def __init__(self, filename):

@@ -15,4 +15,4 @@ class CsvWriter:
         # append data to the CSV file
         with open(self.filename, 'a', newline='') as f:
             writer = csv.writer(f)
-            writer.writerow([datetime.now().strftime('%Y-%m-%d %H:%M:%S')] + data)
+            writer.writerow([datetime.now().strftime('%Y-%m-%d %H:%M:%S')] + data) 

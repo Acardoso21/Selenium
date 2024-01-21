@@ -62,9 +62,6 @@ class SeleniumInterface:
             ip = self.get_element_text(By.XPATH, '//*[@id="root"]/div/span/div[2]/div[1]/main/section[2]/div[1]/div/div[1]/div[2]/div[2]/span')
             location = self.get_element_text(By.XPATH, '//*[@id="root"]/div/span/div[2]/div[1]/main/section[2]/div[1]/div/div[3]/div[2]/div[2]/span/span')
             return(download_speed, upload_speed, ping, jitter, provider, ip, location)
-    def create_xlsx(self):
-        df = pd.DataFrame({'Download Speed': [download_speed]})
-        df.to_excel('speed_test_results.xlsx', index=False)
 
-gfibertest = SeleniumInterface('https://gfiber.speedtestcustom.com/')
-gfibertest.run_google_fiber_test()
+# gfibertest = SeleniumInterface('https://gfiber.speedtestcustom.com/')
+# gfibertest.run_google_fiber_test()

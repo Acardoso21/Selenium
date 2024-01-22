@@ -1,7 +1,8 @@
 import sys
-sys.path.append('csvInterface\csv_interface.py')
+sys.path.append('csvInterface')
 from csvInterface.csv_interface import CsvWriter
-from selenium_interface import SeleniumInterface
+sys.path.append('selenium_scripts')
+from selenium_scripts.selenium_interface import SeleniumInterface
 
 gfibertest = SeleniumInterface('https://gfiber.speedtestcustom.com/')
 down, up, j, p = gfibertest.run_google_fiber_test()

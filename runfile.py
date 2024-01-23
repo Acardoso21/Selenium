@@ -12,5 +12,7 @@ print(j)
 print(p)
 gdata = [down, up, p, j]
 headers = ['download speed','upload speed','jitter','ping']
-table = CsvWriter("Selenium/googlefibertest1.csv",headers)
+table = CsvWriter("googlefibertest1",headers)
 table.append_data(gdata)
+speedcom = SeleniumInterface('www.speedtest.com')
+down, up, j, p =speedcom.run_google_fiber_test2

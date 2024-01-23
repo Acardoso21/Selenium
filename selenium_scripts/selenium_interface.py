@@ -10,10 +10,11 @@ import csv
 
 class SeleniumInterface:
     def __init__(self, url,button_file='selenium_scripts/button_xpaths.csv'):
-        with open(button_file, 'r') as file:
-            reader = csv.reader(file)
-            self.button = list(reader)
-        print(self.button)
+        # with open(button_file, 'r') as file:
+        #     reader = csv.reader(file)
+        #     self.button = list(reader)[0]
+        # self.googlefiber, self.button1, self.button2, self.button3, self.button4, self.button5 = self.button
+        # print(self.button)
         self.driver = webdriver.Chrome()
         self.wait = WebDriverWait(self.driver, timeout=2)
         self.waitlonger = WebDriverWait(self.driver, timeout=60)
@@ -39,7 +40,7 @@ class SeleniumInterface:
         except TimeoutException:
             print(f"Timed out waiting for element {value} to be clickable")
 
-    def run_google_fiber_test2(self, debug=0):
+    def run_google_fiber_test(self, debug=0):
         self.load_website()
         self.click_element(By.XPATH, '//*[@id="main-content"]/div[1]/div/button')
         download_speed = self.wait_for_element(By.XPATH, '//*[@id="root"]/div/span/div[2]/div[1]/main/section[1]/div[2]/div[1]/div[2]/div[1]/div/span').text
@@ -56,14 +57,14 @@ class SeleniumInterface:
             location = self.wait_for_element(By.XPATH, '//*[@id="root"]/div/span/div[2]/div[1]/main/section[2]/div[1]/div/div[3]/div[2]/div[2]/span/span').text
             return(download_speed, upload_speed, ping, jitter, provider, ip, location)
      
-    def run_google_fiber_test(self, debug=0):
+    def run_google_fiber_test2(self, debug=0):
         self.load_website()
-        # print("self button 0,0 " + self.button[0][0])
+        print("self button 0,1 " + self.button1)
         n=0
         while n<6:
-            print(str(self.button[0][n].strip()))
+            print(str(self.button[n].strip()))
             n+=1
-        self.click_element(By.XPATH, str(self.button[0][1].strip()))
+        self.click_element(By.XPATH, self.button1)
         download_speed = self.wait_for_element(By.XPATH, By.XPATH, str(self.button[0][2].strip())).text
         upload_speed = self.wait_for_element(By.XPATH, By.XPATH, self.button[0][3].strip()).text
         ping = self.wait_for_element(By.XPATH, By.XPATH, self.button[0][4].strip()).text
